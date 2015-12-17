@@ -117,7 +117,7 @@ def get_video(IPADDR, VIDEOID, DIRECTORY, TEMPDIR, FFMPEG, FILENAME, DEBUG, TEST
         counter = counter + 1
         if TESTING and counter > 5:
             valid = 0 ## Only process first 5 segmant
-    cmd = FFMPEG+' -y -i "concat:'+concat[:-1]+'" -bsf:a aac_adtstoasc -c copy "'+DIRECTORY+'/'+FILENAME+'.mp4"'
+    cmd = [ FFMPEG, '-y', '-i', 'concat:'+concat[:-1], '-bsf:a', 'aac_adtstoasc', '-c', 'copy', DIRECTORY+'/'+FILENAME+'.mp4' ]
     if ts:
         cmd = FFMPEG+' -y -loglevel panic -i "concat:'+concat[:-1]+'" -c copy "'+DIRECTORY+'/'+FILENAME+'.ts"'
     if DEBUG: print cmd
